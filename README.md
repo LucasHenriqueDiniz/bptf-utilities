@@ -1,13 +1,10 @@
 # backpack.tf Bot Utilities
 
-This user script provides various TF2Autobot (and TF2-Automatic) utilities on [backpack.tf](https://backpack.tf/).
+This user script provides various utilities on [backpack.tf](https://backpack.tf/).
 
-If you have any suggestions or bug reports, please create an [Issue](https://github.com/Bonfire/bptf-bot-utilities/issues).
+If you have any suggestions or bug reports, please create an [Issue](https://github.com/LucasHenriqueDiniz/bptf-utilities/issues).
 
-If this script helped you out, please feel free to support me by doing the any of the following:
-
-- Become a [⭐Stargazer⭐](https://github.com/Bonfire/bptf-bot-utilities/stargazers)
-- Become a [❤️Sponsor❤️](https://github.com/sponsors/Bonfire)
+- Become a [⭐Stargazer⭐](https://github.com/LucasHenriqueDiniz/bptf-utilities/stargazers)
 
 ## Features
 
