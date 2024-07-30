@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Backpack.tf - Bot Utilities
-// @namespace    https://github.com/Bonfire
-// @version      1.0.18
+// @namespace    Forked from Bon's Backpack.tf - Bot Utilities (https://github.com/Bonfire) | Modified by Lucas (https://github.com/LucasHenriqueDiniz/)
+// @version      1.20
 // @description  A script to provide various TF2Autobot utilities on backpack.tf
-// @author       Bon
-// @downloadURL  https://github.com/Bonfire/bptf-bot-utilities/raw/master/bptf-bot-utilities.user.js
-// @updateURL    https://github.com/Bonfire/bptf-bot-utilities/raw/master/bptf-bot-utilities.meta.js
+// @author       Original by Bonfire | Modified by Lucas
+// @downloadURL  https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-bot-utilities.user.js
+// @updateURL    https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-bot-utilities.meta.js
 // @include      /^https?:\/\/backpack\.tf\/.*
 // @grant        GM_setClipboard
 // @grant        GM_xmlhttpRequest
@@ -16,6 +16,220 @@
 // ==/UserScript==
 
 (async () => {
+  // painted values probably remove later
+  const paintedData = {
+    "A Color Similar to Slate": {
+      stringNote: "🧪",
+      price: {
+        keys: 0,
+        metal: 11,
+      },
+    },
+    "A Deep Commitment to Purple": {
+      stringNote: "🪀",
+      price: {
+        keys: 0,
+        metal: 15,
+      },
+    },
+    "A Distinctive Lack of Hue": {
+      stringNote: "🎩",
+      price: {
+        keys: 1,
+        metal: 5,
+      },
+    },
+    "A Mann's Mint": {
+      stringNote: "👽",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "After Eight": {
+      stringNote: "🏴",
+      price: {
+        keys: 1,
+        metal: 5,
+      },
+    },
+    "Aged Moustache Grey": {
+      stringNote: "👤",
+      price: {
+        keys: 0,
+        metal: 5,
+      },
+    },
+    "An Extraordinary Abundance of Tinge": {
+      stringNote: "🏐",
+      price: {
+        keys: 1,
+        metal: 5,
+      },
+    },
+    "Australium Gold": {
+      stringNote: "🏆",
+      price: {
+        keys: 0,
+        metal: 15,
+      },
+    },
+    "Color No. 216-190-216": {
+      stringNote: "🧠",
+      price: {
+        keys: 0,
+        metal: 7,
+      },
+    },
+    "Dark Salmon Injustice": {
+      stringNote: "🐚",
+      price: {
+        keys: 0,
+        metal: 15,
+      },
+    },
+    "Drably Olive": {
+      stringNote: "🥝",
+      price: {
+        keys: 0,
+        metal: 5,
+      },
+    },
+    "Indubitably Green": {
+      stringNote: "🥦",
+      price: {
+        keys: 0,
+        metal: 5,
+      },
+    },
+    "Mann Co. Orange": {
+      stringNote: "🏀",
+      price: {
+        keys: 0,
+        metal: 6,
+      },
+    },
+    Muskelmannbraun: {
+      stringNote: "👜",
+      price: {
+        keys: 0,
+        metal: 2,
+      },
+    },
+    "Noble Hatter's Violet": {
+      stringNote: "🍇",
+      price: {
+        keys: 0,
+        metal: 7,
+      },
+    },
+    "Peculiarly Drab Tincture": {
+      stringNote: "🪑",
+      price: {
+        keys: 0,
+        metal: 3,
+      },
+    },
+    "Pink as Hell": {
+      stringNote: "🎀",
+      price: {
+        keys: 1,
+        metal: 10,
+      },
+    },
+    "Radigan Conagher Brown": {
+      stringNote: "🚪",
+      price: {
+        keys: 0,
+        metal: 2,
+      },
+    },
+    "The Bitter Taste of Defeat and Lime": {
+      stringNote: "💚",
+      price: {
+        keys: 1,
+        metal: 10,
+      },
+    },
+    "The Color of a Gentlemann's Business Pants": {
+      stringNote: "🧽",
+      price: {
+        keys: 0,
+        metal: 5,
+      },
+    },
+    "Ye Olde Rustic Colour": {
+      stringNote: "🥔",
+      price: {
+        keys: 0,
+        metal: 2,
+      },
+    },
+    "Zepheniah's Greed": {
+      stringNote: "🌳",
+      price: {
+        keys: 0,
+        metal: 4,
+      },
+    },
+    "An Air of Debonair": {
+      stringNote: "👜🔷",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "Balaclavas Are Forever": {
+      stringNote: "👜🔷",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "Operator's Overalls": {
+      stringNote: "👜🔷",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "Cream Spirit": {
+      stringNote: "🍘🥮",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "Team Spirit": {
+      stringNote: "🔵🔴",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "The Value of Teamwork": {
+      stringNote: "🎎",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "Waterlogged Lab Coat": {
+      stringNote: "🎏",
+      price: {
+        keys: 0,
+        metal: 30,
+      },
+    },
+    "Legacy Paint": {
+      stringNote: "🔵⛔",
+      price: {
+        keys: 4,
+        metal: 0,
+      },
+    },
+  };
+
   let fetchedData = await GM_getValue("keyData");
 
   // Fetch the price of a key in refined and store it
@@ -28,11 +242,7 @@
       fetchKeyPrice();
     } else {
       let KEY_PRICE = keyData["keyPrice"];
-      console.log(
-        "Key price fetched from storage. Current key price: " +
-          KEY_PRICE +
-          " ref"
-      );
+      console.log("Key price fetched from storage. Current key price: " + KEY_PRICE + " ref");
       console.log(
         "Key price will next be fetched remotely in " +
           ((1_800_000 - elapsedMillis) / 60_000).toFixed(2) +
@@ -76,6 +286,50 @@
     .set("30", "212") // Invis Watch
     .set("735", "736"); // Sapper
 
+  (location.href.includes("classifieds/sell") || location.href.includes("classifieds/buy")) &&
+    (() => {
+      console.log("Running on classifieds page");
+      let item = $(".item");
+
+      // Fetch the item attributes
+      let itemPrice = item.attr("data-price");
+      let itemName = item.attr("data-name");
+      let extra = item.attr("data-q_name");
+      let paintName = item.attr("data-paint_name");
+
+      // Fetch the key price
+      let keyData = JSON.parse(fetchedData);
+      let keyPrice = keyData["keyPrice"];
+
+      // Calculate the number of keys and metal
+      let keys = (itemPrice / keyPrice).toFixed();
+      let metal = (itemPrice % keyPrice).toFixed(1);
+      metal = metal + metal.charAt(metal.length - 1);
+
+      let sellDescription = `🌟 Selling ${extra} ${itemName} ${
+        paintName !== undefined ? ` [${paintName} - ${paintedData[paintName].stringNote}]` : ""
+      } at just ${keys > 0 ? `${keys} keys` : ""} ${keys > 0 && metal > 0 ? "and" : ""} ${
+        metal > 0 ? `${metal} refs` : ""
+      }! 🌟`;
+
+      // input elements
+      let metalInput = $("#metal")[0];
+      let keysInput = $("#keys")[0];
+      let listingDescription = $("#listing-comments")[0];
+
+      if (metalInput && metalInput.value === "" && metal > 0) {
+        metalInput.value = metal;
+      }
+
+      if (keysInput && keysInput.value === "" && keys > 0) {
+        keysInput.value = keys;
+      }
+
+      if (listingDescription) {
+        listingDescription.value = sellDescription;
+      }
+    })();
+
   // Modify popover
   $(document).on("mouseover", ".item", function () {
     let hoveredItem = this;
@@ -111,10 +365,7 @@
             $("#bot-utility-elements").append(skuItemButton);
 
             $("#sku-item-button").on("click", (event) => {
-              GM_setClipboard(
-                $(event.target).data("itemCommand"),
-                "text/plain"
-              );
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
             });
           }
 
@@ -136,10 +387,7 @@
             $("#bot-utility-elements").append(addItemButton);
 
             $("#add-item-button").on("click", (event) => {
-              GM_setClipboard(
-                $(event.target).data("itemCommand"),
-                "text/plain"
-              );
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
             });
           }
 
@@ -161,10 +409,7 @@
             $("#bot-utility-elements").append(updateItemButton);
 
             $("#update-item-button").on("click", (event) => {
-              GM_setClipboard(
-                $(event.target).data("itemCommand"),
-                "text/plain"
-              );
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
             });
           }
 
@@ -186,10 +431,7 @@
             $("#bot-utility-elements").append(removeItemButton);
 
             $("#remove-item-button").on("click", (event) => {
-              GM_setClipboard(
-                $(event.target).data("itemCommand"),
-                "text/plain"
-              );
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
             });
           }
 
@@ -211,18 +453,61 @@
             $("#bot-utility-elements").append(pricecheckItemButton);
 
             $("#pricecheck-item-button").on("click", (event) => {
-              GM_setClipboard(
-                $(event.target).data("itemCommand"),
-                "text/plain"
-              );
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
             });
           }
 
-          // Add the "Match Listing" button
-          if (
-            $(hoveredItem).data("listing_intent") &&
-            !$("#match-listing-button").length
-          ) {
+          // Add the Copy Item Ref Value button
+          if (!$("#copy-item-ref-value-button").length) {
+            let dataPrice = roundValueToRef($(hoveredItem).attr("data-price")) ?? "0.00";
+
+            let refPriceItemButton = document.createElement("a");
+            refPriceItemButton.id = "copy-item-ref-value-button";
+            refPriceItemButton.className = "btn btn-default btn-xs";
+            refPriceItemButton.textContent = " Copy Ref Value";
+
+            let refIcon = document.createElement("i");
+            refIcon.className = "fa fa-paint-brush";
+
+            let itemCommand = dataPrice;
+            $(refPriceItemButton).data("itemCommand", itemCommand);
+            $(refIcon).data("itemCommand", itemCommand);
+
+            refPriceItemButton.prepend(refIcon);
+            $("#bot-utility-elements").append(refPriceItemButton);
+
+            $("#copy-item-ref-value-button").on("click", (event) => {
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
+            });
+          }
+
+          // // Add the "Painted Name" button
+          // if (!$("#copy-item-ref-value-button").length) {
+          //   let paintName = $(hoveredItem).attr("data-paint_name");
+          //   let paintPrice = paintedData[paintName].price;
+          //   let pricecheckItemButton2 = document.createElement("a");
+
+          //   pricecheckItemButton2.id = "pricecheck-item-button2";
+          //   pricecheckItemButton2.className = "btn btn-default btn-xs";
+          //   pricecheckItemButton2.textContent = " 222";
+
+          //   let priceIcon2 = document.createElement("i");
+          //   priceIcon2.className = "fa fa-paint-brush";
+
+          //   let itemCommand = `Key Price: ${paintPrice.keys} keys, Metal Price: ${paintPrice.metal} ref`;
+          //   $(pricecheckItemButton2).data("itemCommand", itemCommand);
+          //   $(priceIcon2).data("itemCommand", itemCommand);
+
+          //   pricecheckItemButton2.prepend(priceIcon2);
+          //   $("#bot-utility-elements").append(pricecheckItemButton2);
+
+          //   $("#pricecheck-item-button2").on("click", (event) => {
+          //     GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
+          //   });
+          // }
+
+          // Add the "Match Listing" button | Only if the item has a listing intent (classifieds page)
+          if ($(hoveredItem).data("listing_intent") && !$("#match-listing-button").length) {
             let matchListingButton = document.createElement("a");
             matchListingButton.id = "match-listing-button";
             matchListingButton.className = "btn btn-default btn-xs";
@@ -250,10 +535,7 @@
             $("#bot-utility-elements").append(matchListingButton);
 
             $("#match-listing-button").on("click", (event) => {
-              GM_setClipboard(
-                $(event.target).data("itemCommand"),
-                "text/plain"
-              );
+              GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
             });
           }
 
@@ -278,9 +560,7 @@
 
     let tempDefIndex = item.attr("data-defindex");
     let itemName = item.attr("data-original-title");
-    let itemDefIndex = stockMap.has(tempDefIndex)
-      ? stockMap.get(tempDefIndex)
-      : tempDefIndex;
+    let itemDefIndex = stockMap.has(tempDefIndex) ? stockMap.get(tempDefIndex) : tempDefIndex;
 
     let itemQuality = item.attr("data-quality");
     let isUncraftable = item.attr("data-craftable") !== "1";
@@ -300,9 +580,7 @@
 
     let isStrange = item.attr("data-quality_elevated") === "11";
     let itemKillstreak = item.attr("data-ks_tier");
-    let isFestivized =
-      item.attr("data-original-title")?.toLowerCase().indexOf("festivized") !==
-      -1;
+    let isFestivized = item.attr("data-original-title")?.toLowerCase().indexOf("festivized") !== -1;
     let isAustralium = item.attr("data-australium") === "1";
 
     // Other item attributes
@@ -336,23 +614,22 @@
       }
     }
     if (itemDefIndex == "9536") {
-      itemDefIndex =
-        (Math.floor(itemSkin / 100) % 2 === 0 ? "17" : "16") + itemSkin;
+      itemDefIndex = (Math.floor(itemSkin / 100) % 2 === 0 ? "17" : "16") + itemSkin;
     }
     // Get the full item SKU, and be sure to remove any pesky whitespaces
     let itemSKU = `${itemDefIndex};\
-  ${itemQuality}\
-  ${itemEffectID ? `;u${itemEffectID}` : ""}\
-  ${isAustralium ? ";australium" : ""}\
-  ${isUncraftable ? ";uncraftable" : ""}\
-  ${itemSkinInfo ? `;w${itemWear};pk${itemSkin}` : ""}\
-  ${isStrange ? ";strange" : ""}\
-  ${itemKillstreak ? `;kt-${itemKillstreak}` : ""}\
-  ${itemTarget ? `;td-${itemTarget}` : ""}\
-  ${isFestivized ? ";festive" : ""}\
-  ${crateSeries ? `;c${crateSeries}` : ""}\
-  ${itemOutput ? `;od-${itemOutput}` : ""}\
-  ${itemOutputQuality ? `;oq-${itemOutputQuality}` : ""}`;
+    ${itemQuality}\
+    ${itemEffectID ? `;u${itemEffectID}` : ""}\
+    ${isAustralium ? ";australium" : ""}\
+    ${isUncraftable ? ";uncraftable" : ""}\
+    ${itemSkinInfo ? `;w${itemWear};pk${itemSkin}` : ""}\
+    ${isStrange ? ";strange" : ""}\
+    ${itemKillstreak ? `;kt-${itemKillstreak}` : ""}\
+    ${itemTarget ? `;td-${itemTarget}` : ""}\
+    ${isFestivized ? ";festive" : ""}\
+    ${crateSeries ? `;c${crateSeries}` : ""}\
+    ${itemOutput ? `;od-${itemOutput}` : ""}\
+    ${itemOutputQuality ? `;oq-${itemOutputQuality}` : ""}`;
 
     return itemSKU.replace(/\s/g, "");
   }
@@ -372,10 +649,7 @@
     } else {
       if (splitString[0].includes("key")) {
         // If the item is priced in the "X keys" format
-        let keyPrice = splitString[0]
-          .replace("keys", "")
-          .replace("key", "")
-          .trim();
+        let keyPrice = splitString[0].replace("keys", "").replace("key", "").trim();
         let splitKey = keyPrice.split(".");
 
         if (splitKey.length > 1) {
@@ -390,6 +664,23 @@
     }
   }
 
+  function roundValueToRef(value) {
+    const price = parseFloat(value);
+
+    if (price < 0.1) {
+      return "0.05";
+    }
+
+    // Remove casas decimais depois da primeira sem arredondar (@TODO)
+    const oneDecimalValue = price.toFixed(1);
+
+    // Repete o último dígito para garantir duas casas decimais e múltiplo de 0,11
+    const repeatedDigitValue = oneDecimalValue + oneDecimalValue.charAt(oneDecimalValue.length - 1);
+
+    console.log("Old value: " + price + " | New value: " + repeatedDigitValue);
+    return repeatedDigitValue;
+  }
+
   function fetchKeyPrice() {
     // Reach out to Prices.TF to grab the current key selling price
     GM_xmlhttpRequest({
@@ -401,9 +692,7 @@
 
         // Log to the user the current key price
         console.log(
-          "Fetched key price from remote source: " +
-            keyResponse["sell"]["metal"] +
-            " ref"
+          "Fetched key price from remote source: " + keyResponse["sell"]["metal"] + " ref"
         );
 
         // Set the KEY_PRICE

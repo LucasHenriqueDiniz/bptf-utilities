@@ -11,6 +11,11 @@ If this script helped you out, please feel free to support me by doing the any o
 
 ## Features
 
+- Automatically inputs the item value in classifields when creating a new listing
+- Copy item price to clipboard
+
+### old features
+
 **All of the below buttons copy their respective commands to your clipboard**
 
 - "Item SKU" button on item hover
@@ -29,7 +34,7 @@ To use user scripts you need to first install a user script manager. Here are ma
 - [Tampermonkey](https://tampermonkey.net/) - Chrome, Microsoft Edge, Safari, Opera, Firefox (also with support for mobile Dolphin Browser and UC Browser)
 - [Violentmonkey](https://violentmonkey.github.io/) - Chrome, Firefox, Maxthon, Opera
 
-To install this user script, simply navigate to [this link](https://github.com/Bonfire/bptf-bot-utilities/raw/master/bptf-bot-utilities.user.js) and click "Install".
+To install this user script, simply navigate to [this link](https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-utilities.user.js) and click "Install".
 
 You can also install this script by manually pasting the code found in the above link into a new user script.
 
