@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Backpack.tf - Bot Utilities
 // @namespace    Forked from Bon's Backpack.tf - Bot Utilities (https://github.com/Bonfire) | Modified by Lucas (https://github.com/LucasHenriqueDiniz/)
-// @version      1.20
+// @version      1.21
 // @description  A script to provide various TF2Autobot utilities on backpack.tf
 // @author       Original by Bonfire | Modified by Lucas
 // @downloadURL  https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-bot-utilities.user.js
