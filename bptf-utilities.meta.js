@@ -6,7 +6,7 @@
 // @author       Original by Bonfire | Modified by Lucas
 // @downloadURL  https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-utilities.user.js
 // @updateURL    https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-utilities.meta.js
-// @include      /^https?:\/\/backpack\.tf\/.*
+// @match        /^https?:\/\/backpack\.tf\/.*
 // @grant        GM_setClipboard
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue

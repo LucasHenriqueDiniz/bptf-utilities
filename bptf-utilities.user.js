@@ -6,7 +6,7 @@
 // @author       Original by Bonfire | Modified by Lucas
 // @downloadURL  https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-bot-utilities.user.js
 // @updateURL    https://github.com/LucasHenriqueDiniz/bptf-utilities/raw/master/bptf-bot-utilities.meta.js
-// @include      /^https?:\/\/backpack\.tf\/.*
+// @match        *://backpack.tf/*
 // @grant        GM_setClipboard
 // @grant        GM_xmlhttpRequest
 // @grant        GM_setValue
@@ -286,6 +286,7 @@
     .set("30", "212") // Invis Watch
     .set("735", "736"); // Sapper
 
+  // Run on the classifieds page
   (location.href.includes("classifieds/sell") || location.href.includes("classifieds/buy")) &&
     (() => {
       console.log("Running on classifieds page");
@@ -328,6 +329,90 @@
       if (listingDescription) {
         listingDescription.value = sellDescription;
       }
+    })();
+
+  // Run on user's inventory page
+  location.href.includes("/profiles/") &&
+    (async () => {
+      //wait until at least one item is loaded to know if the backpack is
+
+      function waitToBackpack() {
+        console.log("waiting for backpack to load");
+        return new Promise((resolve) => {
+          let interval = setInterval(() => {
+            if ($(".item").length > 0) {
+              console.log("backpack loaded", $(".item").length);
+              clearInterval(interval);
+              resolve();
+            }
+          }, 100);
+        });
+      }
+
+      waitToBackpack().then(() => {
+        console.log("Running on user's inventory page");
+        const tradableForm = $("select.form-control")[1];
+        const items = $(".item");
+        const backpackPages = $(".backpack-page");
+
+        if (tradableForm) {
+          // changing the value dont work, so we need to trigger the change event
+          tradableForm.value = "1";
+          tradableForm.dispatchEvent(new Event("change"));
+        }
+
+        const filters = $("#filters");
+        filters.append(`
+          <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+            <label for="hidePure" style="margin-bottom: 0px;">Hide pure</label>
+            <input type="checkbox" id="hidePure" name="hidePure" value="hidePure">
+          </div>
+        `);
+
+        $("#hidePure").on("change", function () {
+          if (this.checked) {
+            let pureItems = $(".item[isPure]");
+            pureItems.each((index, pureItem) => {
+              $(pureItem).hide();
+            });
+          } else {
+            let pureItems = $(".item[isPure]");
+            pureItems.each((index, pureItem) => {
+              $(pureItem).show();
+            });
+          }
+          try {
+            backpackPages.each((index, page) => {
+              $(page).document.querySelectorAll(".item-list").children(":visible").length > 0
+                ? $(page).show()
+                : $(page).hide();
+            });
+          } catch (error) {
+            console.log("Error on hide bp pages, fix this later", error);
+          }
+        });
+
+        items.each((index, item) => {
+          let itemName = $(item).attr("data-name");
+          let itemPrice = $(item).attr("data-price");
+          let itemQuality = $(item).attr("data-q_name");
+
+          console.log(itemName, itemPrice, itemQuality);
+
+          if (itemName && itemPrice && itemQuality) {
+            if (
+              (itemName === "Scrap Metal" ||
+                itemName === "Reclaimed Metal" ||
+                itemName === "Refined Metal" ||
+                itemName === "Mann Co. Supply Crate Key") &&
+              itemQuality === "Unique"
+            ) {
+              //create a new attribute to identify pure items
+              item.setAttribute("isPure", true);
+            }
+          }
+        });
+      });
     })();
 
   // Modify popover
