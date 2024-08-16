@@ -16,219 +16,44 @@
 // ==/UserScript==
 
 (async () => {
-  // painted values probably remove later
-  const paintedData = {
-    "A Color Similar to Slate": {
-      stringNote: "🧪",
-      price: {
-        keys: 0,
-        metal: 11,
-      },
-    },
-    "A Deep Commitment to Purple": {
-      stringNote: "🪀",
-      price: {
-        keys: 0,
-        metal: 15,
-      },
-    },
-    "A Distinctive Lack of Hue": {
-      stringNote: "🎩",
-      price: {
-        keys: 1,
-        metal: 5,
-      },
-    },
-    "A Mann's Mint": {
-      stringNote: "👽",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "After Eight": {
-      stringNote: "🏴",
-      price: {
-        keys: 1,
-        metal: 5,
-      },
-    },
-    "Aged Moustache Grey": {
-      stringNote: "👤",
-      price: {
-        keys: 0,
-        metal: 5,
-      },
-    },
-    "An Extraordinary Abundance of Tinge": {
-      stringNote: "🏐",
-      price: {
-        keys: 1,
-        metal: 5,
-      },
-    },
-    "Australium Gold": {
-      stringNote: "🏆",
-      price: {
-        keys: 0,
-        metal: 15,
-      },
-    },
-    "Color No. 216-190-216": {
-      stringNote: "🧠",
-      price: {
-        keys: 0,
-        metal: 7,
-      },
-    },
-    "Dark Salmon Injustice": {
-      stringNote: "🐚",
-      price: {
-        keys: 0,
-        metal: 15,
-      },
-    },
-    "Drably Olive": {
-      stringNote: "🥝",
-      price: {
-        keys: 0,
-        metal: 5,
-      },
-    },
-    "Indubitably Green": {
-      stringNote: "🥦",
-      price: {
-        keys: 0,
-        metal: 5,
-      },
-    },
-    "Mann Co. Orange": {
-      stringNote: "🏀",
-      price: {
-        keys: 0,
-        metal: 6,
-      },
-    },
-    Muskelmannbraun: {
-      stringNote: "👜",
-      price: {
-        keys: 0,
-        metal: 2,
-      },
-    },
-    "Noble Hatter's Violet": {
-      stringNote: "🍇",
-      price: {
-        keys: 0,
-        metal: 7,
-      },
-    },
-    "Peculiarly Drab Tincture": {
-      stringNote: "🪑",
-      price: {
-        keys: 0,
-        metal: 3,
-      },
-    },
-    "Pink as Hell": {
-      stringNote: "🎀",
-      price: {
-        keys: 1,
-        metal: 10,
-      },
-    },
-    "Radigan Conagher Brown": {
-      stringNote: "🚪",
-      price: {
-        keys: 0,
-        metal: 2,
-      },
-    },
-    "The Bitter Taste of Defeat and Lime": {
-      stringNote: "💚",
-      price: {
-        keys: 1,
-        metal: 10,
-      },
-    },
-    "The Color of a Gentlemann's Business Pants": {
-      stringNote: "🧽",
-      price: {
-        keys: 0,
-        metal: 5,
-      },
-    },
-    "Ye Olde Rustic Colour": {
-      stringNote: "🥔",
-      price: {
-        keys: 0,
-        metal: 2,
-      },
-    },
-    "Zepheniah's Greed": {
-      stringNote: "🌳",
-      price: {
-        keys: 0,
-        metal: 4,
-      },
-    },
-    "An Air of Debonair": {
-      stringNote: "👜🔷",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "Balaclavas Are Forever": {
-      stringNote: "👜🔷",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "Operator's Overalls": {
-      stringNote: "👜🔷",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "Cream Spirit": {
-      stringNote: "🍘🥮",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "Team Spirit": {
-      stringNote: "🔵🔴",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "The Value of Teamwork": {
-      stringNote: "🎎",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "Waterlogged Lab Coat": {
-      stringNote: "🎏",
-      price: {
-        keys: 0,
-        metal: 30,
-      },
-    },
-    "Legacy Paint": {
-      stringNote: "🔵⛔",
-      price: {
-        keys: 4,
-        metal: 0,
-      },
-    },
-  };
+  // se for https://backpack.tf/classifieds/archive rodar uma função
+  if (location.href.includes("classifieds/archive")) {
+    var header = document.querySelector("#page-content > div.row > div > div > div.panel-heading");
+    header.style.alignContent = "center";
+
+    var panelExtras = header.querySelector(".panel-extras");
+
+    let newButton = document.createElement("button");
+    newButton.className = "btn btn-xs";
+    newButton.textContent = "Rigth Click All";
+    newButton.style.color = "black";
+
+    let textCounter = document.createElement("span");
+    textCounter.style.color = "black";
+    textCounter.style.marginLeft = "10px";
+    textCounter.textContent = "0";
+    rightClickCounter = 0;
+
+    panelExtras.appendChild(textCounter);
+
+    var evt = new MouseEvent("contextmenu", {
+      bubbles: true,
+      cancelable: true,
+      view: null,
+    });
+
+    newButton.onclick = async () => {
+      let items = document.querySelectorAll(".listing-bump");
+      for (let item of items) {
+        item.dispatchEvent(evt);
+        rightClickCounter++;
+        textCounter.textContent = rightClickCounter;
+        await new Promise((resolve) => setTimeout(resolve, 200));
+      }
+    };
+
+    panelExtras.appendChild(newButton);
+  }
 
   let fetchedData = await GM_getValue("keyData");
 
@@ -308,7 +133,7 @@
       metal = metal + metal.charAt(metal.length - 1);
 
       let sellDescription = `🌟 Selling ${extra} ${itemName} ${
-        paintName !== undefined ? ` [${paintName} - ${paintedData[paintName].stringNote}]` : ""
+        paintName !== undefined ? ` [${paintName}` : ""
       } at just ${keys > 0 ? `${keys} keys` : ""} ${keys > 0 && metal > 0 ? "and" : ""} ${
         metal > 0 ? `${metal} refs` : ""
       }! 🌟`;
@@ -363,11 +188,11 @@
 
         const filters = $("#filters");
         filters.append(`
-          <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
-            <label for="hidePure" style="margin-bottom: 0px;">Hide pure</label>
-            <input type="checkbox" id="hidePure" name="hidePure" value="hidePure">
-          </div>
-        `);
+            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+              <label for="hidePure" style="margin-bottom: 0px;">Hide pure</label>
+              <input type="checkbox" id="hidePure" name="hidePure" value="hidePure">
+            </div>
+          `);
 
         $("#hidePure").on("change", function () {
           if (this.checked) {
@@ -381,15 +206,10 @@
               $(pureItem).show();
             });
           }
-          try {
-            backpackPages.each((index, page) => {
-              $(page).document.querySelectorAll(".item-list").children(":visible").length > 0
-                ? $(page).show()
-                : $(page).hide();
-            });
-          } catch (error) {
-            console.log("Error on hide bp pages, fix this later", error);
-          }
+
+          backpackPages.each((index, page) => {
+            console.log($($(page)[0].lastElementChild).children(":visible").length == 0);
+          });
         });
 
         items.each((index, item) => {
@@ -566,31 +386,6 @@
             });
           }
 
-          // // Add the "Painted Name" button
-          // if (!$("#copy-item-ref-value-button").length) {
-          //   let paintName = $(hoveredItem).attr("data-paint_name");
-          //   let paintPrice = paintedData[paintName].price;
-          //   let pricecheckItemButton2 = document.createElement("a");
-
-          //   pricecheckItemButton2.id = "pricecheck-item-button2";
-          //   pricecheckItemButton2.className = "btn btn-default btn-xs";
-          //   pricecheckItemButton2.textContent = " 222";
-
-          //   let priceIcon2 = document.createElement("i");
-          //   priceIcon2.className = "fa fa-paint-brush";
-
-          //   let itemCommand = `Key Price: ${paintPrice.keys} keys, Metal Price: ${paintPrice.metal} ref`;
-          //   $(pricecheckItemButton2).data("itemCommand", itemCommand);
-          //   $(priceIcon2).data("itemCommand", itemCommand);
-
-          //   pricecheckItemButton2.prepend(priceIcon2);
-          //   $("#bot-utility-elements").append(pricecheckItemButton2);
-
-          //   $("#pricecheck-item-button2").on("click", (event) => {
-          //     GM_setClipboard($(event.target).data("itemCommand"), "text/plain");
-          //   });
-          // }
-
           // Add the "Match Listing" button | Only if the item has a listing intent (classifieds page)
           if ($(hoveredItem).data("listing_intent") && !$("#match-listing-button").length) {
             let matchListingButton = document.createElement("a");
@@ -703,18 +498,18 @@
     }
     // Get the full item SKU, and be sure to remove any pesky whitespaces
     let itemSKU = `${itemDefIndex};\
-    ${itemQuality}\
-    ${itemEffectID ? `;u${itemEffectID}` : ""}\
-    ${isAustralium ? ";australium" : ""}\
-    ${isUncraftable ? ";uncraftable" : ""}\
-    ${itemSkinInfo ? `;w${itemWear};pk${itemSkin}` : ""}\
-    ${isStrange ? ";strange" : ""}\
-    ${itemKillstreak ? `;kt-${itemKillstreak}` : ""}\
-    ${itemTarget ? `;td-${itemTarget}` : ""}\
-    ${isFestivized ? ";festive" : ""}\
-    ${crateSeries ? `;c${crateSeries}` : ""}\
-    ${itemOutput ? `;od-${itemOutput}` : ""}\
-    ${itemOutputQuality ? `;oq-${itemOutputQuality}` : ""}`;
+      ${itemQuality}\
+      ${itemEffectID ? `;u${itemEffectID}` : ""}\
+      ${isAustralium ? ";australium" : ""}\
+      ${isUncraftable ? ";uncraftable" : ""}\
+      ${itemSkinInfo ? `;w${itemWear};pk${itemSkin}` : ""}\
+      ${isStrange ? ";strange" : ""}\
+      ${itemKillstreak ? `;kt-${itemKillstreak}` : ""}\
+      ${itemTarget ? `;td-${itemTarget}` : ""}\
+      ${isFestivized ? ";festive" : ""}\
+      ${crateSeries ? `;c${crateSeries}` : ""}\
+      ${itemOutput ? `;od-${itemOutput}` : ""}\
+      ${itemOutputQuality ? `;oq-${itemOutputQuality}` : ""}`;
 
     return itemSKU.replace(/\s/g, "");
   }
